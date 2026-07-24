@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#6756df" />
+    <title>NEXUS — Sin conexión</title>
+    <style>
+      :root { color: #1c1c1a; background: #f7f7f4; font-family: Arial, sans-serif; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; }
+      main { width: min(420px, 100%); text-align: center; }
+      .mark { width: 56px; height: 56px; display: grid; place-items: center; margin: 0 auto 22px; border-radius: 17px; background: #6756df; color: white; font: 700 32px Georgia, serif; }
+      h1 { margin: 0 0 10px; font-size: 28px; letter-spacing: -.04em; }
+      p { margin: 0; color: #74736e; line-height: 1.55; }
+      button { margin-top: 24px; padding: 10px 15px; border: 0; border-radius: 8px; background: #6756df; color: white; font-weight: 700; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="mark">N</div>
+      <h1>Estás sin conexión</h1>
+      <p>El espacio que ya hayas abierto seguirá disponible. Vuelve a conectarte para generar respuestas nuevas.</p>
+      <button type="button" onclick="window.location.reload()">Reintentar</button>
+    </main>
+  </body>
+</html>

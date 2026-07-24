@@ -35,7 +35,7 @@ La URL prevista para la edición PWA publicada en GitHub Pages es:
 
 En Chrome, Edge y Android aparecerá el botón **“Instalar app”** cuando el navegador considere que la PWA es instalable. En iPhone/iPad, el botón muestra la ruta de Safari: **Compartir → Añadir a pantalla de inicio**. La edición estática de GitHub Pages funciona sin servidor en **modo demo local** y conserva la conversación en el dispositivo. Para respuestas con claves de IA, usa el despliegue estándar de Next.js descrito abajo.
 
-> Para publicar esa URL hay que activar GitHub Pages una vez desde **Settings → Pages** y desplegar el build estático. La automatización de GitHub Actions requiere permiso de `workflows` en la conexión de GitHub.
+> El build estático listo para Pages se versiona en `docs/`. Para publicar esa URL hay que activar GitHub Pages una vez desde **Settings → Pages** y elegir la rama `arena/019f94cf-nexus-ai`, carpeta `/docs`. La automatización de GitHub Actions requiere permiso de `workflows` en la conexión de GitHub.
 
 ## Stack
 
