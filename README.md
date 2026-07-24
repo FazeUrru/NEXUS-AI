@@ -1,10 +1,9 @@
 <div align="center">
 
-# 🧠 NEXUS-AI
+# ✦ NEXUS AI
 
-### La plataforma de IA multimodal más completa — ilimitada y gratuita
+### Un espacio de trabajo sereno para pensar, escribir y crear con IA
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/FazeUrru/NEXUS-AI)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6.svg)](https://typescriptlang.org)
@@ -14,160 +13,96 @@
 
 ---
 
-## ✨ ¿Qué es NEXUS-AI?
+## Qué incluye esta versión
 
-**NEXUS-AI** es una plataforma web de inteligencia artificial multimodal que integra los mejores modelos de IA del mundo en una sola interfaz. Diseñada para ser rápida, potente y accesible — sin límites, sin complicaciones.
+NEXUS AI v2.2 es un MVP funcional de un workspace conversacional. Prioriza una interfaz clara y una integración de proveedores que funciona con claves propias.
 
----
+- **Chat con IA conectado o modo demo.** Sin una clave configurada, el endpoint responde con una guía útil de demostración; con una clave, envía la conversación al proveedor seleccionado.
+- **Cinco modelos seleccionables.** GPT-4o/GPT-5, Claude Sonnet, Gemini Pro y Grok, con selección persistente.
+- **Cuatro modos de inicio.** Escribir, investigar, crear código e idear visuales preparan el contexto del mensaje.
+- **Persistencia local y privacidad por defecto.** La conversación, el modelo, el tema y el modo activo se guardan únicamente en `localStorage` del navegador.
+- **Experiencia responsive.** Navegación móvil, tema claro/oscuro, ajustes, copiar respuestas, compartir la transcripción y estados de carga/error accesibles.
+- **API protegida.** El servidor valida el formato y el tamaño de los mensajes; las claves nunca se exponen al cliente.
 
-## 🚀 Features (28 herramientas de IA)
+> El diseño de la interfaz no promete búsquedas web, carga de archivos, voz ni memoria remota: sus controles muestran claramente que esas extensiones todavía no están disponibles.
 
-| Categoría | Herramientas |
-|-----------|-------------|
-| 💬 **Chat & Asistente** | Chat IA, Chat Privado, Asistente de Código |
-| ✍️ **Escritura & Contenido** | Escritura Creativa, Generación de Contenido, Corrección Gramatical, Generador de Títulos, Historias |
-| 🔍 **Análisis & Research** | Deep Research, Búsqueda Web, Análisis de Sentimientos, Análisis de Datos, Análisis de Texto |
-| 🖼️ **Visual & Diseño** | Generación de Imágenes, Magic Design, UI Designer |
-| 💻 **Desarrollo** | Generación de Código, Fullstack Apps, Generador de Apps, Web Pages |
-| 📄 **Documentos** | Resumen de Documentos, Resumir Texto, Explicar Conceptos |
-| 🎨 **Creatividad** | Ideas, Presentaciones, Juegos, Traducción, Emails |
+## Stack
 
----
+- **App:** Next.js 16 (App Router), React 19 y TypeScript estricto
+- **Estilos:** CSS nativo con tokens de tema y diseño responsive
+- **IA:** rutas `fetch` para OpenAI, Anthropic, Google Gemini y xAI
+- **Calidad:** ESLint 9 + configuración `eslint-config-next/core-web-vitals`
 
-## 🤖 Modelos de IA disponibles
-
-- **OpenAI:** GPT-5.4, GPT-5.2, GPT-5, GPT-4o
-- **Anthropic:** Claude Opus 4, Claude Sonnet 4
-- **Google:** Gemini 3 Pro, Gemini 3 Flash
-- **xAI:** Grok 4.20
-- **Meta:** Llama 4 405B
-
----
-
-## 🛠️ Stack tecnológico
-
-```
-Frontend:    Next.js 16 · React 19 · TypeScript 5 · Tailwind CSS 4
-UI:          Radix UI · shadcn/ui · Lucide Icons · Recharts
-State:       Zustand · React Query · React Hook Form
-Backend:     Next.js API Routes · Prisma ORM · SQLite
-Auth:        NextAuth.js
-Runtime:     Bun
-```
-
----
-
-## ⚡ Instalación y uso
+## Inicio rápido
 
 ### Requisitos
-- [Bun](https://bun.sh) >= 1.0
-- Node.js >= 20
 
-### Setup rápido
+- Node.js 20.9 o posterior (se recomienda Node 22)
+- Una clave de proveedor de IA opcional
 
 ```bash
-# Clonar el repo
-git clone https://github.com/FazeUrru/NEXUS-AI.git
-cd NEXUS-AI
+# Instala las dependencias
+npm install
 
-# Instalar dependencias
-bun install
-
-# Configurar base de datos
-bun run db:push
-
-# Variables de entorno
+# Copia las variables de entorno y añade las claves que quieras usar
 cp .env.example .env
-# Edita .env con tus API keys
 
-# Iniciar en desarrollo
-bun run dev
+# Inicia el entorno de desarrollo
+npm run dev
 ```
 
-La app estará disponible en `http://localhost:3000`
+Abre [http://localhost:3000](http://localhost:3000).
 
-### Producción
+### Comandos
 
 ```bash
-bun run build
-bun run start
+npm run dev     # Desarrollo
+npm run lint    # Reglas de calidad
+npm run build   # Build de producción
+npm run start   # Ejecuta el build de producción
 ```
 
----
+## Variables de entorno
 
-## 🔧 Variables de entorno
+Copia `.env.example` a `.env`. No es necesario configurar todos los proveedores: el selector usará el modo demo cuando no encuentre la clave del modelo elegido.
 
 ```env
-# Base de datos
-DATABASE_URL="file:./db/custom.db"
-
-# NextAuth
-NEXTAUTH_SECRET="tu-secreto-aqui"
-NEXTAUTH_URL="http://localhost:3000"
-
-# APIs de IA (añade las que uses)
 OPENAI_API_KEY=""
 ANTHROPIC_API_KEY=""
 GOOGLE_AI_API_KEY=""
+XAI_API_KEY=""
 ```
 
----
+Las variables `DATABASE_URL` y `NEXTAUTH_*` continúan en el archivo de ejemplo para una futura capa de cuentas y persistencia remota; el MVP actual no las consume.
 
-## 📁 Estructura del proyecto
+| Selector de NEXUS | Variable | Integración |
+| --- | --- | --- |
+| GPT-4o, GPT-5 | `OPENAI_API_KEY` | Chat Completions de OpenAI |
+| Claude Sonnet 4 | `ANTHROPIC_API_KEY` | Messages API de Anthropic |
+| Gemini 2.5 Pro | `GOOGLE_AI_API_KEY` | Generative Language API de Google |
+| Grok 4 | `XAI_API_KEY` | API compatible con OpenAI de xAI |
 
+> Comprueba que el identificador de modelo esté habilitado para tu cuenta. Los proveedores pueden cambiar los nombres o el acceso a sus modelos; en ese caso actualiza el `id` correspondiente en `app/page.tsx`.
+
+## Estructura
+
+```text
+app/
+├── api/
+│   ├── chat/route.ts      # Validación, fallback demo y adaptadores de IA
+│   └── health/route.ts    # Health check
+├── globals.css            # Tokens, temas y layout responsive
+├── layout.tsx             # Metadatos y shell global
+└── page.tsx               # Workspace y estado de interacción
 ```
-nexus-ai/
-├── src/
-│   ├── app/
-│   │   ├── api/ai/          # 28 endpoints de IA
-│   │   ├── page.tsx          # App principal
-│   │   └── layout.tsx
-│   ├── components/
-│   │   ├── features/         # 28 componentes de features
-│   │   ├── layout/           # Sidebar, navegación
-│   │   ├── modals/           # Settings, Profile
-│   │   └── ui/               # Componentes shadcn/ui
-│   ├── store/                # Estado global (Zustand)
-│   ├── hooks/                # Custom hooks
-│   └── lib/                  # Utilidades, DB client
-├── prisma/
-│   └── schema.prisma         # Modelos de DB
-└── public/                   # Assets estáticos
-```
 
----
+## Próximos pasos sugeridos
 
-## 🎯 Características principales
+1. Añadir autenticación y persistencia por usuario antes de sincronizar conversaciones entre dispositivos.
+2. Convertir la respuesta de chat a streaming para tiempos de espera más agradables.
+3. Implementar carga/lectura de documentos y búsqueda web con sus estados y fuentes verificables.
+4. Separar el gran componente de workspace en componentes y hooks reutilizables al ampliar herramientas.
 
-- ✅ **28 herramientas de IA** en una sola plataforma
-- ✅ **10 modelos de IA** de los mejores proveedores
-- ✅ **Autenticación completa** con NextAuth.js
-- ✅ **Historial de conversaciones** persistente
-- ✅ **Tema claro/oscuro** con soporte automático
-- ✅ **Diseño responsive** — funciona en móvil y desktop
-- ✅ **17 configuraciones de perfil** personalizables
-- ✅ **17 configuraciones generales** del sistema
-- ✅ **Rendimiento optimizado** — sin animaciones pesadas
-- ✅ **Sistema estable** — v2.1.0 sin errores
+## Licencia
 
----
-
-## 📊 Versiones
-
-| Versión | Cambios |
-|---------|---------|
-| **v2.1.0** | Bug fixes, optimización de rendimiento, scroll inteligente en chat |
-| **v2.0.0** | Actualización a 2026, 10 nuevos modelos de IA (GPT-5, Claude 4, Grok 4...) |
-| **v1.0.0** | Lanzamiento inicial — 15 features de IA, auth, base de datos |
-
----
-
-## 📄 Licencia
-
-MIT © 2026 [FazeUrru](https://github.com/FazeUrru)
-
----
-
-<div align="center">
-  <strong>NEXUS-AI — IA ilimitada, sin límites 🚀</strong>
-</div>
+MIT © 2026 FazeUrru
