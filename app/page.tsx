@@ -86,6 +86,16 @@ const RECENT_CHATS = [
   { title: "Plan de aprendizaje", meta: "Esta semana" },
 ];
 
+// GitHub Pages is a static host: its public PWA intentionally uses this local mode.
+// Full provider calls remain available from the standard Next.js server build.
+const IS_STATIC_DEMO = process.env.NEXT_PUBLIC_STATIC_DEMO === "true";
+
+function clientDemoReply(prompt: string, tool?: string) {
+  const subject = prompt.replace(/\s+/g, " ").trim();
+  const context = tool ? `He aplicado el enfoque **${tool}** a esta primera propuesta.` : "He preparado un punto de partida que puedes adaptar.";
+  return `### Ya tenemos un buen punto de partida\n\n${context}\n\nTu objetivo parece ser: **“${subject.slice(0, 180)}${subject.length > 180 ? "…" : ""}”**.\n\n**Siguiente paso recomendado**\n1. Define el resultado concreto que quieres obtener.\n2. Añade quién va a usarlo y qué restricciones existen.\n3. Pide una primera versión y mejórala por iteraciones.\n\n> Estás usando la edición instalable de NEXUS en modo demo. Tus mensajes se guardan en este dispositivo.\n\nCuéntame el formato final que necesitas y lo desarrollamos juntos.`;
+}
+
 function Icon({ name, size = 18, stroke = 1.8 }: { name: IconName; size?: number; stroke?: number }) {
   const shared = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: stroke, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
   const paths: Record<IconName, React.ReactNode> = {
@@ -244,7 +254,14 @@ export default function Home() {
     setIsSending(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      if (IS_STATIC_DEMO) {
+        // Keep the installable GitHub Pages edition fully usable without a server.
+        await new Promise((resolve) => window.setTimeout(resolve, 420));
+        setMessages((current) => [...current, { id: crypto.randomUUID(), role: "assistant", content: clientDemoReply(content, activeToolLabel), createdAt: new Date().toISOString(), mode: "demo" }]);
+        return;
+      }
+
+      const response = await fetch("./api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

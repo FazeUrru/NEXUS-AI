@@ -22,9 +22,20 @@ NEXUS AI v2.2 es un MVP funcional de un workspace conversacional. Prioriza una i
 - **Cuatro modos de inicio.** Escribir, investigar, crear código e idear visuales preparan el contexto del mensaje.
 - **Persistencia local y privacidad por defecto.** La conversación, el modelo, el tema y el modo activo se guardan únicamente en `localStorage` del navegador.
 - **Experiencia responsive.** Navegación móvil, tema claro/oscuro, ajustes, copiar respuestas, compartir la transcripción y estados de carga/error accesibles.
+- **PWA instalable.** Manifest, iconos, service worker, caché offline y botón de instalación para Android, escritorio y Safari en iPhone/iPad.
 - **API protegida.** El servidor valida el formato y el tamaño de los mensajes; las claves nunca se exponen al cliente.
 
 > El diseño de la interfaz no promete búsquedas web, carga de archivos, voz ni memoria remota: sus controles muestran claramente que esas extensiones todavía no están disponibles.
+
+## Versión web instalable
+
+La URL prevista para la edición PWA publicada en GitHub Pages es:
+
+**https://fazeurru.github.io/NEXUS-AI/**
+
+En Chrome, Edge y Android aparecerá el botón **“Instalar app”** cuando el navegador considere que la PWA es instalable. En iPhone/iPad, el botón muestra la ruta de Safari: **Compartir → Añadir a pantalla de inicio**. La edición estática de GitHub Pages funciona sin servidor en **modo demo local** y conserva la conversación en el dispositivo. Para respuestas con claves de IA, usa el despliegue estándar de Next.js descrito abajo.
+
+> Para publicar esa URL hay que activar GitHub Pages una vez desde **Settings → Pages** y desplegar el build estático. La automatización de GitHub Actions requiere permiso de `workflows` en la conexión de GitHub.
 
 ## Stack
 
