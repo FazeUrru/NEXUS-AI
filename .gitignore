@@ -1,17 +1,4 @@
-# dependencies and build artifacts
-node_modules/
-.next/
-out/
-
-# local environment files
-.env
-.env.local
-.env.*.local
-
-# local database files
-/db/*.db
-/db/*.db-journal
-
-# tooling
-*.tsbuildinfo
-.DS_Store
+```
+# Build artifacts
+docs/*.html
+```
